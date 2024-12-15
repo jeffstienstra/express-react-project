@@ -33,6 +33,35 @@ const createUser = (req, res) => {
         });
 }
 
+const updateUser = (req, res) => {
+    console.log('updateUser route hit:'); // Debugging statement
+    User.findById(req.params._id)
+        .then(user => {
+            if (!user) {
+                return res.status(404).send('User not found');
+            }
+
+            console.log('User found:', user); // Debugging statement
+
+            user.name = req.body.name || user.name;
+            user.age = req.body.age || user.age;
+
+            user.save()
+                .then(updatedUser => {
+                    console.log('User updated:', updatedUser); // Debugging statement
+                    res.json(updatedUser);
+                })
+                .catch(err => {
+                    console.log('Error updating user:', err);
+                    res.status(500).send('Internal Server Error');
+                });
+        })
+        .catch(err => {
+            console.log('Error finding user:', err);
+            res.status(500).send('Internal Server Error');
+        });
+}
+
 const deleteUser = (req, res) => {
     console.log('deleteUser route hit:'); // Debugging statement
 
@@ -50,5 +79,6 @@ const deleteUser = (req, res) => {
 export default {
     getUsers,
     createUser,
+    updateUser,
     deleteUser
 }

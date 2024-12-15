@@ -18,7 +18,7 @@ const createUser = (req, res) => {
     console.log('createUser route hit:'); // Debugging statement
 
     const user = new User({
-        name: req.body.name || 'testName',
+        name: req.body.name || 'Unknown',
         age: req.body.age || 0,
     })
 

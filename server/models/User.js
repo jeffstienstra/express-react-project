@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
     name: String,
-    age: Number,
+    age: String,
 }, {collection: 'User', // Explicitly specify collection names
      versionKey: false}); // Disable version key (__v) in db
 

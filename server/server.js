@@ -14,7 +14,7 @@ const corsOptions = {
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204(No Content) status code
 }
 app.use(cors(corsOptions));
-app.use(express.json()); // Enable parsing JSON data from client requests
+app.use(express.json()); // Middleware to enable parsing JSON data from client requests
 
 // Routes
 import userRoutes from './routes/userRoutes.js';

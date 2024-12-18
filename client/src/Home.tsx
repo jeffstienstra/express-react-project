@@ -66,24 +66,22 @@ function Home() {
 
   function updateUser(e: React.FormEvent) {
     e.preventDefault();
-    const updatedUser = newUser;
+    const {_id, name, age} = newUser;
 
-    fetch(`http://localhost:5000/api/users/${updatedUser._id}`, {
+    fetch(`http://localhost:5000/api/users/${_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: updatedUser.name, age: updatedUser.age })
+      body: JSON.stringify({ name: name, age: age })
     })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     })
-    .then(updatedUser => {
-      console.log('Updated user:', updatedUser);
-      // Update the updatedUser in the users state
+    .then((updatedUser) => {
       setUsers(users.map(u => u._id === updatedUser._id ? updatedUser : u));
       setShowEditUserModal(false);
     })

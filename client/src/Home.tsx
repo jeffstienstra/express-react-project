@@ -16,7 +16,7 @@ function Home() {
   const [showCreateUserModal, setShowCreateUserModal] = useState(false);
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
-  const [newUser, setNewUser] = useState<User>({name: '', age: ''});
+  const [newUser, setNewUser] = useState<User>({_id: '', name: '', age: ''});
 
   useEffect(() => {
     fetch('http://localhost:5000/api/users')
@@ -92,7 +92,7 @@ function Home() {
 
   function deleteUser(user: User) {
     console.log('Deleting user:', user)
-    fetch(`http://localhost:5000/api/users/${user.name}`, {
+    fetch(`http://localhost:5000/api/users/${user._id}`, {
       method: 'DELETE',
     })
     .then(response => {

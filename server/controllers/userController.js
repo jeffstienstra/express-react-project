@@ -65,7 +65,7 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res) => {
     console.log('deleteUser route hit:'); // Debugging statement
 
-    User.deleteOne({name: req.params.name})
+    User.deleteOne({_id: req.params._id})
         .then((result) => {
             console.log('User deleted:', result); // Debugging statement
 

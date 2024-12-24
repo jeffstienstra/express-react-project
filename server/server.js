@@ -5,16 +5,17 @@ import cors from 'cors';
 const app = express();
 const PORT = 5000;
 
-mongoose.connect('mongodb://localhost:27017/example-server')
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));;
-
 const corsOptions = {
     origin: 'http://localhost:5173', // Allow only this domain to send requests
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204(No Content) status code
 }
 app.use(cors(corsOptions));
 app.use(express.json()); // Middleware to enable parsing JSON data from client requests
+
+mongoose.connect('mongodb://localhost:27017/example-server')
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));;
+
 
 // Routes
 import userRoutes from './routes/userRoutes.js';
